@@ -1,0 +1,1188 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">  
+  <title>ELOS Estratégia</title>
+  <meta name="description" content="ELOS Estratégia — o elo entre estratégia e execução.">
+  <meta name="theme-color" content="#2A2D93">
+  <link rel="icon" type="image/x-icon" href="/assets/eloslogo.webp">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            elosBlue: "#2A2D93",
+            elosOrange: "#F78907",
+            paper: "#F5F3EE",
+            ink: "#171717",
+            muted: "#686868",
+            line: "#D9D7D1"
+          },
+          fontFamily: {
+            sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Resource hints: reduz latência das dependências externas -->
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Imagem principal: prioridade alta para melhorar o LCP -->
+  <link rel="preload" as="image" href="assets/ObderanDeise.webp" fetchpriority="high">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Estilos Customizados -->
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      background: #F5F3EE;
+      color: #171717;
+    }
+    ::selection {
+      background: #2A2D93;
+      color: #fff;
+    }
+
+    /* Animações de Entrada */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Navbar Scrolled */
+    .nav-scrolled {
+      background: rgba(245, 243, 238, .92);
+      border-color: rgba(42, 45, 147, .12);
+      backdrop-filter: blur(16px);
+    }
+
+    /* Accordion / Serviços */
+    .service-copy {
+      grid-template-rows: 0fr;
+      transition: grid-template-rows .45s ease;
+    }
+    .service.is-open .service-copy {
+      grid-template-rows: 1fr;
+    }
+    .service-arrow {
+      transition: transform .35s ease;
+    }
+    .service.is-open .service-arrow {
+      transform: rotate(45deg);
+    }
+
+    /* Efeito de Flash nos Cards */
+    .card-flash {
+      transition: transform .4s ease, box-shadow .4s ease, border-color .4s ease;
+    }
+    .card-flash:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 22px 55px rgba(23, 23, 23, .10);
+      border-color: rgba(42, 45, 147, .35);
+    }
+
+    /* Linha Horizontal (Desktop - cresce na largura) */
+    .progress-fill-x {
+      width: 0;
+    }
+    .progress-line.is-animated .progress-fill-x {
+      width: 100%;
+    }
+
+    /* Linha Vertical (Mobile - cresce na altura) */
+    .progress-fill-y {
+      height: 0;
+    }
+    .progress-line.is-animated .progress-fill-y {
+      height: 100%;
+    }
+
+    /* Bolinhas no final das linhas */
+    .progress-dot {
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+    .progress-line.is-animated .progress-dot {
+      background-color: #F78907; /* elosOrange */
+      border-color: #F78907;
+      transition-delay: 5000ms; /* Só acende quando a linha chega (5s) */
+    }
+
+    @keyframes float-slow {
+      0% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(2deg); }
+      100% { transform: translateY(0px) rotate(0deg); }
+    }
+
+    .animate-float-slow {
+      animation: float-slow 4s ease-in-out infinite;
+    }
+
+    .timeline-dot.completed {
+      background-color: #F78907;
+      border-color: #F78907;
+      color: white;
+      transform: scale(1.08);
+      box-shadow: 0 0 0 5px rgba(247, 137, 7, 0.12);
+    }
+  </style>
+</head>
+<body class="font-sans antialiased">
+
+  <header id="site-header" class="fixed inset-x-0 top-0 z-50 border-b border-transparent transition-all duration-300">
+    <div class="mx-auto flex h-[76px] max-w-[1400px] items-center justify-between px-6 lg:px-10">
+      <a href="#inicio" class="text-[15px] font-bold tracking-[.16em] text-elosBlue">
+        <img src="/assets/elosLogo.webp" class="w-16" alt="ELOS Estratégia" decoding="async">
+      </a>
+      
+      <nav class="hidden items-center gap-8 lg:flex text-[13px]">
+        <a class="hover:text-elosBlue" href="#inicio">Início</a>
+        <a class="hover:text-elosBlue" href="#elos">A Elos</a>
+        <a class="hover:text-elosBlue" href="#especialistas">Especialistas</a>
+        <a class="hover:text-elosBlue" href="#atuacao">Atuação</a>
+        <a class="hover:text-elosBlue" href="#contato">Contato</a>
+      </nav>
+      
+      <a href="https://wa.link/ngvb8l" target="_blank" class="hidden border transition-colors duration-200 ease border-elosBlue px-5 py-3 text-[12px] font-semibold uppercase tracking-[.08em] text-elosBlue hover:bg-elosBlue hover:text-white lg:block rounded-2xl">
+        <i class="fa-brands fa-whatsapp text-md mr-1"></i>
+        <span>
+          Falar com especialista
+        </span>
+      </a>
+      
+      <button id="menu-button" class="lg:hidden" aria-label="Abrir menu" aria-expanded="false">
+        <span class="block h-px w-6 bg-elosBlue"></span>
+        <span class="mt-1.5 block h-px w-6 bg-elosBlue"></span>
+      </button>
+    </div>
+    
+    <div id="mobile-menu" class="hidden border-t border-b border-elosBlue/10 bg-paper px-6 pb-7 pt-4 lg:hidden shadow-sm">
+      <nav class="flex flex-col text-lg">
+        <a class="py-3" href="#inicio">Início</a>
+        <a class="py-3" href="#elos">A Elos</a>
+        <a class="py-3" href="#especialistas">Especialistas</a>
+        <a class="py-3" href="#atuacao">Atuação</a>
+        <a class="py-3" href="#contato">Contato</a>
+      </nav>
+      
+      <a href="https://wa.link/ngvb8l" target="_blank" class="mt-3 block bg-elosBlue px-5 py-4 text-center text-sm text-white rounded-2xl">
+        <i class="fa-brands fa-whatsapp text-base leading-none mr-1"></i>
+        <span>Falar com especialista</span> 
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Seção Início -->
+    <section id="inicio" class="relative min-h-screen overflow-hidden px-6 pt-[120px] lg:px-10 lg:pt-[70px]">
+      <div class="mx-auto grid min-h-[calc(100vh-150px)] max-w-[1400px] items-center gap-12 pb-20 lg:grid-cols-[1.12fr_.88fr]">
+        <div class="reveal">
+          <h1 class="max-w-[980px] text-[clamp(3.25rem,7vw,5rem)] font-medium leading-[.9] tracking-[-.055em]">
+            O <span class="italic text-elosBlue">ELO</span> que faltava entre o que você planeja e o que sua empresa executa.
+          </h1>
+          <p class="mt-9 max-w-[660px] text-base leading-7 text-muted lg:text-[18px] lg:leading-8">
+            A ELOS nasceu da união de mais de três décadas de experiência em estratégia corporativa e execução humana. Dois olhares complementares, um único propósito: gerar resultados para o seu negócio.
+          </p>
+          <div class="mt-9 flex flex-wrap gap-3">
+            <a href="https://wa.link/ngvb8l" target="_blank" class="bg-elosBlue px-6 py-4 text-[12px] font-semibold uppercase tracking-[.08em] text-white hover:bg-[#202274] rounded-2xl transition-colors duration-300 ease">
+              Falar com especialista
+            </a>
+            <a href="#elos" class="border border-elosBlue/30 px-6 py-4 text-[12px] font-semibold uppercase tracking-[.08em] text-elosBlue rounded-2xl">
+              Conheça a Elos
+            </a>
+          </div>
+        </div>
+        <div class="reveal lg:pl-8 hover:scale-[1.01]">
+          <div class="relative lg:h-[600px] flex items-center justify-center reveal delay-200 pt-14 sm:pt-0 active">
+            <!-- Foto principal -->
+            <!-- Área central da composição -->
+            <div class="relative w-full h-full flex items-center justify-center">
+
+                <!-- FOTO DOS ESPECIALISTAS -->
+                <div class="relative z-10 w-full max-w-xl">
+
+                    <!-- Sombra decorativa -->
+                    <div class="absolute inset-0
+                                bg-gradient-to-br
+                                from-elosBlue/60
+                                to-elosOrange/60
+                                rounded-[40px]
+                                rotate-3
+                                scale-[1.064] 
+                                shadow-xl">
+                    </div>
+
+                    <img
+                        src="assets/ObderanDeise.webp"
+                        alt="Obderan Bispo e Deise Monique — ELOS Estratégia"
+                        class="relative z-10 w-full object-contain rounded-2xl shadow-lg"
+                        onerror="this.style.display='none'"
+                    >
+
+                </div>
+
+
+                <!-- ========================================= -->
+                <!-- OBDERAN — FORA DA FOTO -->
+                <!-- ========================================= -->
+
+                <div class="absolute -bottom-10 lg:bottom-[120px] left-2 md:left-40 lg:left-2  bg-white px-3 py-1.5 rounded-xl shadow-lg border border-slate-100 z-30 animate-float-slow">
+
+                    <div class="flex items-center gap-2">
+
+                        <div class="w-9 h-9 rounded-full
+                                    bg-elosBlue/10
+                                    flex items-center justify-center
+                                    text-elosBlue">
+
+                            <span class="text-sm">
+                              <i class="fa-solid fa-award"></i>
+                            </span>
+
+                        </div>
+
+                        <div>
+                            <div class="text-xs font-bold text-elosBlue">
+                                Obderan Bispo
+                            </div>
+
+                            <div class="text-[10px] text-slate-400">
+                                Consultor empresarial
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ========================================= -->
+                <!-- DEISE — FORA DA FOTO -->
+                <!-- ========================================= -->
+
+                <div class="absolute -top-10 lg:top-[120px] right-2 md:right-40 lg:right-2  z-20 bg-white px-3 py-1.5 rounded-xl shadow-lg border border-slate-100 animate-float-slow">
+
+                    <div class="flex items-center gap-2">
+
+                        <div class="w-9 h-9 rounded-full
+                                    bg-elosBlue/10
+                                    flex items-center justify-center
+                                    text-elosBlue">
+
+                            <span class="text-sm">
+                              <i class="fa-solid fa-award"></i>
+                            </span>
+
+                        </div>
+
+                        <div>
+                            <div class="text-xs font-bold text-elosBlue">
+                                Deise Monique
+                            </div>
+
+                            <div class="text-[10px] text-slate-400">
+                                Mentora de líderes
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção A Elos -->
+    <section id="elos" class="bg-elosBlue px-6 py-24 text-white lg:px-10 lg:py-36">
+      <div class="mx-auto max-w-[1400px]">
+        <div class="reveal max-w-6xl">
+          <p class="text-[11px] font-bold tracking-[.25em] text-elosOrange">A ELOS</p>
+          <h2 class="mt-6 text-[clamp(2.7rem,5.7vw,6rem)] font-medium leading-[.92] tracking-[-.055em]">
+                        Entre a estratégia e o resultado, existe a <span class="text-elosOrange">execução.</span>
+          </h2>
+          <p class="mt-8 text-base leading-7 text-white lg:text-lg">
+            Muitas organizações sabem onde querem chegar, mas encontram dificuldade para transformar o planejamento estratégico em execução consistente. A ELOS conecta a estratégia às pessoas, aos processos e à prática que fazem o resultado acontecer.
+          </p>
+        </div>
+
+        <div class="mt-16 grid max-w-xl grid-cols-2 gap-10">
+          <!-- EXPERIÊNCIA -->
+          <div class="border-l-2 border-elosOrange pl-5">
+            <div class="flex items-baseline gap-1">
+              <span class="text-2xl font-semibold text-elosOrange">+</span>
+              <span
+                class="counter text-4xl font-semibold tracking-tight text-white lg:text-5xl"
+                data-target="32"
+              >0</span>
+            </div>
+
+            <p class="mt-2 text-[10px] font-bold uppercase tracking-[.2em] text-white/60">
+              anos de experiência
+            </p>
+          </div>
+
+
+          <!-- EMPRESAS -->
+          <div class="border-l-2 border-elosOrange pl-5">
+            <div class="flex items-baseline gap-1">
+              <span class="text-2xl font-semibold text-elosOrange">+</span>
+              <span
+                class="counter text-4xl font-semibold tracking-tight text-white lg:text-5xl"
+                data-target="21"
+              >0</span>
+            </div>
+
+            <p class="mt-2 text-[10px] font-bold uppercase tracking-[.2em] text-white/60">
+              empresas impulsionadas
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Seção Especialistas -->
+    <section id="especialistas" class="px-6 py-24 lg:px-10 lg:py-36">
+      <div class="mx-auto max-w-[1400px]">
+        <div class="reveal mb-16">
+          <p class="text-[11px] font-bold tracking-[.25em] text-elosOrange">ESPECIALISTAS</p>
+          <h2 class="mt-5 max-w-6xl text-[clamp(2.5rem,5vw,5.2rem)] font-medium leading-[.95] tracking-[-.055em]">
+            Perspectivas complementares para decisões que avançam.
+          </h2>
+        </div>
+        <div class="grid gap-16 lg:grid-cols-2 lg:gap-10">
+          <!-- Especialista 1 -->
+          <article class="reveal">
+            <div class="aspect-[4/4.4] overflow-hidden bg-[#DDD9D0] rounded-2xl w-[280px] h-[280px] sm:w-[500px] sm:h-[500px] shadow-lg">
+              <img src="assets/obderan.webp" alt="Obderan Bispo" loading="lazy" decoding="async" class="h-full w-full object-cover" onerror="this.style.display='none'">
+            </div>
+            <div class="mt-7">
+              <h3 class="text-3xl font-medium text-elosBlue">OBDERAN BISPO</h3>
+              <p class="mt-2 text-sm text-muted">Administrador pela UFS | CRA 3979</p>
+              <p class="mt-5 text-[11px] font-bold tracking-[.18em] text-elosOrange">ESTRATÉGIA · GESTÃO · FINANÇAS</p>
+              <p class="mt-6 max-w-xl leading-7 text-muted text-justify">
+                Mestre em Administração, administrador e consultor empresarial com ampla vivência no Sistema Financeiro Nacional e 16 anos de atuação estratégica na Bahia e Sergipe. Atual Conselheiro e Diretor do CRA-SE e docente no ensino superior, foi homenageado nacionalmente pelo Sistema CFA/CRAs por sua contribuição à Ciência da Administração no país.
+              </p>
+            </div>
+          </article>
+          
+          <!-- Especialista 2 -->
+          <article class="reveal">
+            <div class="aspect-[4/4.4] overflow-hidden bg-[#DDD9D0] rounded-2xl w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] shadow-lg">
+              <img src="assets/deise.webp" alt="Deise Monique" loading="lazy" decoding="async" class="h-full w-full object-cover" onerror="this.style.display='none'">
+
+            </div>
+            <div class="mt-7">
+              <h3 class="text-3xl font-medium text-elosBlue">DEISE MONIQUE</h3>
+              <p class="mt-2 text-sm text-muted">Estrategista de Vida &amp; Negócios | CRA 0250-06</p>
+              <p class="mt-5 text-[11px] font-bold tracking-[.18em] text-elosOrange">PESSOAS · COMERCIAL · EXECUÇÃO</p>
+              <p class="mt-6 max-w-xl leading-7 text-muted text-justify">
+                Mais de 17 anos de experiência em grandes multinacionais como Coca-Cola, Grupo Petrópolis, iFood e Dexco, atuando na liderança de operações comerciais e estratégias de trade marketing. Formada em Gestão Comercial, com extensão em Ciências Sociais pela PUCRS, Certificação Executiva pela FIA e formação em Hipnose Clínica.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Pilares de Atuação -->
+    <section id="atuacao" class="bg-elosBlue px-6 py-24 text-white lg:px-10 lg:py-36">
+        <div class="mx-auto max-w-[1400px]">
+
+            <!-- Cabeçalho -->
+            <div class="reveal mb-16">
+                <p class="text-[11px] font-bold tracking-[.25em] text-elosOrange">
+                    PILARES DE ATUAÇÃO
+                </p>
+
+                <h2 class="mt-5 max-w-5xl text-[clamp(2.7rem,5.5vw,6rem)] font-medium leading-[.94] tracking-[-.055em]">
+                    Especialidades que conectam <span class="text-elosOrange">intenção e prática.</span>
+                </h2>
+            </div>
+
+
+            <!-- ========================================================= -->
+            <!-- DESKTOP — TIMELINE CENTRAL                                -->
+            <!-- ========================================================= -->
+
+            <div class="relative hidden overflow-hidden py-2 md:block md:p-10">
+
+                <!-- Linha central -->
+                <div
+                    class="absolute bottom-0 left-1/2 top-0 w-px -translate-x-1/2 bg-white/15"
+                ></div>
+
+
+                <!-- Pilar 1 -->
+                <div class="relative mb-8 grid w-full grid-cols-[5fr_auto_5fr] items-center gap-0 reveal">
+
+                    <!-- Espaço esquerdo -->
+                    <div></div>
+
+                    <!-- Número -->
+                    <div class="z-20 mx-5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-elosOrange shadow-xl">
+                        <span class="text-sm font-bold text-elosBlue">
+                          <i class="fa-solid fa-chess-knight"></i>
+                        </span>
+                    </div>
+
+                    <!-- Card -->
+                    <div class="min-w-0 rounded-xl border border-white/10 bg-white/5 px-5 py-5 shadow-sm backdrop-blur-sm">
+                        <h3 class="mb-2 text-lg font-medium text-white">
+                            GESTÃO ESTRATÉGICA
+                        </h3>
+
+                        <p class="text-sm leading-6 text-white/70">
+                            Diagnóstico organizacional, planejamento estratégico,
+                            reestruturação, modelagem de negócio, governança e análise
+                            de franqueabilidade.
+                        </p>
+                    </div>
+                </div>
+
+
+                <!-- Pilar 2 -->
+                <div class="relative mb-8 grid w-full grid-cols-[5fr_auto_5fr] items-center gap-0 reveal">
+
+                    <!-- Card -->
+                    <div class="min-w-0 rounded-xl border border-white/10 bg-white/5 px-5 py-5 text-right shadow-sm backdrop-blur-sm">
+                        <h3 class="mb-2 text-lg font-medium text-white">
+                            GESTÃO FINANCEIRA
+                        </h3>
+
+                        <p class="ml-auto text-sm leading-6 text-white/70">
+                            Valuation, precificação, análise de custos, planejamento
+                            financeiro e revisão orçamentária com base em indicadores
+                            técnicos precisos.
+                        </p>
+                    </div>
+
+                    <!-- Número -->
+                    <div class="z-20 mx-5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-elosOrange shadow-xl">
+                        <span class="text-sm font-bold text-elosBlue">
+                          <i class="fa-solid fa-coins"></i>
+                        </span>
+                    </div>
+
+                    <!-- Espaço direito -->
+                    <div></div>
+                </div>
+
+
+                <!-- Pilar 3 -->
+                <div class="relative mb-8 grid w-full grid-cols-[5fr_auto_5fr] items-center gap-0 reveal">
+
+                    <!-- Espaço esquerdo -->
+                    <div></div>
+
+                    <!-- Número -->
+                    <div class="z-20 mx-5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-elosOrange shadow-xl">
+                        <span class="text-sm font-bold text-elosBlue">
+                          <i class="fa-solid fa-user-tie"></i>
+                        </span>
+                    </div>
+
+                    <!-- Card -->
+                    <div class="min-w-0 rounded-xl border border-white/10 bg-white/5 px-5 py-5 shadow-sm backdrop-blur-sm">
+                        <h3 class="mb-2 text-lg font-medium text-white">
+                            GESTÃO DE PESSOAS
+                        </h3>
+
+                        <p class="text-sm leading-6 text-white/70">
+                            Formação de líderes, mentoria, T&amp;D, avaliação de
+                            desempenho e implementação de cultura organizacional de
+                            alta performance.
+                        </p>
+                    </div>
+                </div>
+
+
+                <!-- Pilar 4 -->
+                <div class="relative grid w-full grid-cols-[5fr_auto_5fr] items-center gap-0 reveal">
+
+                    <!-- Card -->
+                    <div class="min-w-0 rounded-xl border border-white/10 bg-white/5 px-5 py-5 text-right shadow-sm backdrop-blur-sm">
+                        <h3 class="mb-2 text-lg font-medium text-white">
+                            GESTÃO COMERCIAL E MARKETING
+                        </h3>
+
+                        <p class="ml-auto text-sm leading-6 text-white/70">
+                            Canais de venda, CRM, pesquisas de mercado, posicionamento
+                            de marca, comercial ativo e experiência do cliente (NPS).
+                        </p>
+                    </div>
+
+                    <!-- Número -->
+                    <div class="z-20 mx-5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-elosOrange shadow-xl">
+                        <span class="text-sm font-bold text-elosBlue">
+                          <i class="fa-solid fa-arrow-trend-up"></i>
+                        </span>
+                    </div>
+
+                    <!-- Espaço direito -->
+                    <div></div>
+                </div>
+
+            </div>
+
+
+            <!-- ========================================================= -->
+            <!-- MOBILE — BLOCOS EDITORIAIS                                -->
+            <!-- ========================================================= -->
+
+            <div class="md:hidden">
+
+                <!-- Pilar 1 -->
+                <article class="reveal border-t border-white/15 py-8">
+
+                    <div class="flex items-start gap-5">
+
+                        <!-- Número -->
+                        <div class="w-14 shrink-0">
+                            <span class="text-5xl font-medium leading-none tracking-[-.06em] text-elosOrange">
+                                <i class="fa-solid fa-chess-knight"></i>
+                            </span>
+                        </div>
+
+                        <!-- Conteúdo -->
+                        <div class="flex-1">
+
+                            <h3 class="text-lg font-medium leading-tight text-white">
+                                GESTÃO ESTRATÉGICA
+                            </h3>
+
+                            <p class="mt-4 text-sm leading-6 text-white/65">
+                                Diagnóstico organizacional, planejamento estratégico,
+                                reestruturação, modelagem de negócio, governança e análise
+                                de franqueabilidade.
+                            </p>
+
+                        </div>
+                    </div>
+
+                </article>
+
+
+                <!-- Pilar 2 -->
+                <article class="reveal border-t border-white/15 py-8">
+
+                    <div class="flex items-start gap-5">
+
+                        <!-- Número -->
+                        <div class="order-2 w-14 shrink-0 text-right">
+                            <span class="text-5xl font-medium leading-none tracking-[-.06em] text-elosOrange">
+                                <i class="fa-solid fa-coins"></i>
+                            </span>
+                        </div>
+
+                        <!-- Conteúdo -->
+                        <div class="order-1 flex-1 text-right">
+
+                            <h3 class="text-lg font-medium leading-tight text-white">
+                                GESTÃO FINANCEIRA
+                            </h3>
+
+                            <p class="mt-4 text-sm leading-6 text-white/65">
+                                Valuation, precificação, análise de custos, planejamento
+                                financeiro e revisão orçamentária com base em indicadores
+                                técnicos precisos.
+                            </p>
+
+                        </div>
+                    </div>
+
+                </article>
+
+
+                <!-- Pilar 3 -->
+                <article class="reveal border-t border-white/15 py-8">
+
+                    <div class="flex items-start gap-5">
+
+                        <!-- Número -->
+                        <div class="w-14 shrink-0">
+                            <span class="text-5xl font-medium leading-none tracking-[-.06em] text-elosOrange">
+                                <i class="fa-solid fa-user-tie"></i>
+                            </span>
+                        </div>
+
+                        <!-- Conteúdo -->
+                        <div class="flex-1">
+
+                            <h3 class="text-lg font-medium leading-tight text-white">
+                                GESTÃO DE PESSOAS
+                            </h3>
+
+                            <p class="mt-4 text-sm leading-6 text-white/65">
+                                Formação de líderes, mentoria, T&amp;D, avaliação de
+                                desempenho e implementação de cultura organizacional de
+                                alta performance.
+                            </p>
+
+                        </div>
+                    </div>
+
+                </article>
+
+
+                <!-- Pilar 4 -->
+                <article class="reveal border-y border-white/15 py-8">
+
+                    <div class="flex items-start gap-5">
+
+                        <!-- Número -->
+                        <div class="order-2 w-14 shrink-0 text-right">
+                            <span class="text-5xl font-medium leading-none tracking-[-.06em] text-elosOrange">
+                                <i class="fa-solid fa-arrow-trend-up"></i>
+                            </span>
+                        </div>
+
+                        <!-- Conteúdo -->
+                        <div class="order-1 flex-1 text-right">
+
+                            <h3 class="text-lg font-medium leading-tight text-white">
+                                GESTÃO COMERCIAL E MARKETING
+                            </h3>
+
+                            <p class="mt-4 text-sm leading-6 text-white/65">
+                                Canais de venda, CRM, pesquisas de mercado, posicionamento
+                                de marca, comercial ativo e experiência do cliente (NPS).
+                            </p>
+
+                        </div>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+
+
+    <!-- Seção Entregas -->
+    <section class="bg-white px-6 py-24 lg:px-10 lg:py-36">
+      <div class="mx-auto max-w-[1400px]">
+        <div class="reveal mb-14 flex flex-col justify-between gap-6">
+          <div>
+            <p class="text-[11px] font-bold tracking-[.25em] text-elosOrange">ENTREGA</p>
+            <h2 class="mt-5 text-[clamp(2.8rem,5.5vw,6rem)] font-medium leading-[.94] tracking-[-.055em]">O que entregamos</h2>
+          </div>
+          <p class="leading-7 text-muted">
+            Estratégia com compromisso de implementação, rigor técnico e foco no valor que permanece.
+          </p>
+        </div>
+        
+        <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+          <article class="card-flash reveal min-h-[250px] xl:max-w-[245px] border border-line bg-paper p-7 flex flex-col justify-between rounded-2xl">
+            <div class="flex items-start justify-between">
+              <span class="text-5xl font-medium text-elosBlue">
+                <i class="fa-solid fa-circle-check"></i>
+              </span>
+              <!-- <span class="h-3 w-3 rounded-full bg-elosOrange"></span> -->
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold">ENTREGAS CONCRETAS</h3>
+              <p class="mt-4 text-sm leading-6 text-muted">Planos que saem do papel e geram resultado mensurável, não apenas relatórios.</p>
+            </div>
+          </article>
+          
+          <article class="card-flash reveal min-h-[250px] xl:max-w-[245px] border border-line bg-paper p-7 flex flex-col justify-between rounded-2xl">
+            <div class="flex items-start justify-between">
+              <span class="text-5xl font-medium text-elosBlue">
+                <i class="fa-solid fa-handshake"></i>
+              </span>
+              <!-- <span class="h-3 w-3 rounded-full bg-elosOrange"></span> -->
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold">ACCOUNTABILITY</h3>
+              <p class="mt-4 text-sm leading-6 text-muted">Assumimos o compromisso com a implementação, não apenas com a recomendação.</p>
+            </div>
+          </article>
+          
+          <article class="card-flash reveal min-h-[250px] xl:max-w-[245px] border border-line bg-paper p-7 flex flex-col justify-between rounded-2xl">
+            <div class="flex items-start justify-between">
+              <span class="text-5xl font-medium text-elosBlue">
+                <i class="fa-solid fa-chart-line"></i>
+              </span>
+              <!-- <span class="h-3 w-3 rounded-full bg-elosOrange"></span> -->
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold">GERAÇÃO DE VALOR</h3>
+              <p class="mt-4 text-sm leading-6 text-muted">Resultados que permanecem na organização após o encerramento do projeto.</p>
+            </div>
+          </article>
+          
+          <article class="card-flash reveal min-h-[250px] xl:max-w-[245px] border border-line bg-paper p-7 flex flex-col justify-between rounded-2xl">
+            <div class="flex items-start justify-between">
+              <span class="text-5xl font-medium text-elosBlue">
+                <i class="fa-solid fa-chart-column"></i>
+              </span>
+              <!-- <span class="h-3 w-3 rounded-full bg-elosOrange"></span> -->
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold">ORIENTAÇÃO A DADOS</h3>
+              <p class="mt-4 text-sm leading-6 text-muted">Decisões baseadas em diagnósticos técnicos e indicadores financeiros precisos.</p>
+            </div>
+          </article>
+          
+          <article class="card-flash reveal min-h-[250px] xl:max-w-[245px] border border-line bg-paper p-7 flex flex-col justify-between rounded-2xl">
+            <div class="flex items-start justify-between">
+              <span class="text-5xl font-medium text-elosBlue">
+                <i class="fa-solid fa-award"></i>
+              </span>
+              <!-- <span class="h-3 w-3 rounded-full bg-elosOrange"></span> -->
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold">EXCELÊNCIA TÉCNICA</h3>
+              <p class="mt-4 text-sm leading-6 text-muted">Rigor metodológico sustentado por sólida formação acadêmica e experiência de mercado.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+        <!-- Seção Visão e Valores -->
+    <section class="bg-elosBlue px-6 py-24 lg:px-10 lg:py-36">
+      <div class="mx-auto max-w-[1400px]">
+        <p class="reveal text-[11px] font-bold tracking-[.25em] text-elosOrange">NOSSA MISSÃO</p>
+        <h2 class="reveal mt-7 max-w-7xl text-[clamp(2.5rem,5.5vw,4rem)] font-medium leading-[1.01] text-white">
+          Transformar <span class="text-elosOrange">inteligência estratégica</span> em disciplina operacional para converter o potencial de pessoas e organizações em resultados sustentáveis.
+        </h2>
+        <div class="grid gap-12 pt-10 lg:grid-cols-2">
+          <div class="reveal">
+            <p class="text-[11px] font-bold tracking-[.2em] text-elosOrange">VISÃO</p>
+            <p class="reveal mt-7 max-w-6xl text-[clamp(1rem,5.5vw,1rem)] font-thin leading-[.99] text-white/70">
+              Ser referência nacional em consultoria que integra visão organizacional à performance das equipes, convertendo estratégia em cultura de execução.
+            </p>
+          </div>
+          <div class="reveal">
+            <p class="text-[11px] font-bold tracking-[.2em] text-elosOrange">VALORES</p>
+            <p class="reveal mt-7 max-w-6xl text-[clamp(1rem,5.5vw,1rem)] font-thin leading-[.99] text-white/70">
+              Compromisso · Respeito · Disciplina · Integridade · Transferência de Conhecimento · Valorização das Pessoas
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção O Processo -->
+    <section id="processo" class="px-6 py-24 lg:px-10 lg:py-36">
+      <div class="mx-auto max-w-[1400px]">
+        <div class="reveal max-w-4xl">
+          <p class="text-[11px] font-bold tracking-[.25em] text-elosOrange">O PROCESSO</p>
+          <h2 class="mt-5 text-[clamp(2.8rem,5.5vw,6rem)] font-medium leading-[.94] tracking-[-.055em]">Da estratégia à execução.</h2>
+          <p class="mt-8 max-w-2xl text-lg leading-8 text-muted">
+            A ELOS não para nas recomendações. A jornada conecta o pensamento estratégico à prática que dá continuidade ao resultado.
+          </p>
+        </div>
+        
+        <div id="progress-timeline" class="progress-line relative mt-20">
+          <!-- LINHA HORIZONTAL (DESKTOP) -->
+          <div class="absolute left-0 right-0 top-[23px] hidden h-[2px] bg-line lg:block">
+            <div class="progress-fill-x h-full bg-elosOrange transition-[width] duration-[5000ms] ease-linear"></div>
+            <div class="progress-dot absolute -right-1.5 top-1/2 h-3 w-3 -translate-y-1/2 rounded-full border-2 border-line bg-paper"></div>
+          </div>          
+
+          <!-- LINHA VERTICAL (MOBILE) -->
+          <div class="absolute left-[23px] top-0 bottom-0 w-[2px] bg-line lg:hidden">
+            <div class="progress-fill-y w-full bg-elosOrange transition-[height] duration-[5000ms] ease-linear"></div>
+            <div class="progress-dot absolute -bottom-1.5 left-1/2 h-3 w-3 -translate-x-1/2 rounded-full border-2 border-line bg-paper"></div>
+          </div>
+          
+          <div class="grid lg:grid-cols-5">
+            <div class="reveal relative flex gap-6 py-5 lg:block lg:px-5 lg:py-0">
+              <span class="timeline-dot relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-elosBlue bg-paper text-sm font-semibold text-elosBlue transition-all duration-500"
+              data-step="1">01</span>
+              <div class="pt-2 lg:pt-8">
+                <h3 class="text-2xl">Diagnóstico</h3>
+                <p class="mt-2 max-w-[210px] text-sm leading-6 text-muted">Entender o cenário, os desafios e as oportunidades.</p>
+              </div>
+            </div>
+            
+            <div class="reveal relative flex gap-6 py-5 lg:block lg:px-5 lg:py-0">
+              <span class="timeline-dot relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-elosBlue bg-paper text-sm font-semibold text-elosBlue transition-all duration-500"
+              data-step="2">02</span>
+              <div class="pt-2 lg:pt-8">
+                <h3 class="text-2xl">Estratégia</h3>
+                <p class="mt-2 max-w-[210px] text-sm leading-6 text-muted">Definir prioridades, direção e plano de ação.</p>
+              </div>
+            </div>
+            
+            <div class="reveal relative flex gap-6 py-5 lg:block lg:px-5 lg:py-0">
+              <span class="timeline-dot relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-elosBlue bg-paper text-sm font-semibold text-elosBlue transition-all duration-500"
+              data-step="3">03</span>
+              <div class="pt-2 lg:pt-8">
+                <h3 class="text-2xl">Implementação</h3>
+                <p class="mt-2 max-w-[210px] text-sm leading-6 text-muted">Transformar a estratégia em iniciativas concretas.</p>
+              </div>
+            </div>
+            
+            <div class="reveal relative flex gap-6 py-5 lg:block lg:px-5 lg:py-0">
+              <span class="timeline-dot relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-elosBlue bg-paper text-sm font-semibold text-elosBlue transition-all duration-500"
+              data-step="4">04</span>
+              <div class="pt-2 lg:pt-8">
+                <h3 class="text-2xl">Acompanhamento</h3>
+                <p class="mt-2 max-w-[210px] text-sm leading-6 text-muted">Medir, ajustar e manter o ritmo de execução.</p>
+              </div>
+            </div>
+            
+            <div class="reveal relative flex gap-6 py-5 lg:block lg:px-5 lg:py-0">
+              <span class="timeline-dot relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-elosBlue bg-paper text-sm font-semibold text-elosBlue transition-all duration-500"
+              data-step="5">05</span>
+              <div class="pt-2 lg:pt-8">
+                <h3 class="text-2xl">Resultado</h3>
+                <p class="mt-2 max-w-[210px] text-sm leading-6 text-muted">Consolidar valor e resultados sustentáveis.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Contato -->
+    <section id="contato" class="bg-elosBlue px-6 py-28 lg:px-10 lg:py-44">
+      <div class="mx-auto max-w-[1400px]">
+        <div class="reveal grid gap-12">
+          <div>
+            <p class="text-[11px] font-bold tracking-[.25em] text-elosOrange">ELOS ESTRATÉGIA</p>
+            <h2 class="mt-7 max-w-5xl text-[clamp(3rem,7vw,7.5rem)] font-medium leading-[.88] tracking-[-.055em] text-white">
+              Estratégia só gera resultado quando <span class="text-elosOrange">sai do papel.</span>
+            </h2>
+          </div>
+          <div>
+            <p class="text-2xl leading-9 text-white">A ELOS garante que isso aconteça.</p>
+            <div class="flex flex-row gap-2 items-start">
+              <div class="mt-8 flex flex-wrap gap-3">
+                <a
+                    href="https://wa.link/ngvb8l"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-6 py-4 text-[12px] font-semibold uppercase tracking-[.08em] text-elosBlue transition-all duration-300 hover:-translate-y-0.5 hover:bg-elosOrange"
+                >
+                    <i class="fa-brands fa-whatsapp text-base leading-none"></i>
+                    <span class="leading-none">Falar com especialista</span>
+                </a>
+            </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-ink px-6 pt-12 text-white lg:px-10">
+
+  <div class="mx-auto max-w-[1400px]">
+
+    <!-- Conteúdo principal -->
+    <div class="grid gap-10 border-b border-white/10 pb-10 md:grid-cols-3">
+
+      <!-- Marca -->
+      <div class="flex flex-col items-center text-center md:items-start md:text-left">
+
+        <img
+          src="/assets/elosLogo.webp"
+          class="w-20"
+          alt="ELOS Estratégia"
+          decoding="async"
+        >
+
+        <p class="mt-5 max-w-xs text-sm leading-relaxed text-white/50">
+          Estratégia, pessoas e resultados para transformar negócios.
+        </p>
+
+        <!-- Redes sociais -->
+        <div class="mt-6 flex gap-5">
+
+          <a
+            href="https://instagram.com/elos_estrategia"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram da ELOS Estratégia"
+            class="text-xl text-white/60 transition-colors duration-300 ease-in-out hover:text-white"
+          >
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+
+          <a
+            href="https://wa.link/ngvb8l"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp da ELOS Estratégia"
+            class="text-xl text-white/60 transition-colors duration-300 ease-in-out hover:text-white"
+          >
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+
+          <a
+            href="mailto:contato@elosestrategia.com.br"
+            aria-label="Enviar e-mail para a ELOS Estratégia"
+            class="text-xl text-white/60 transition-colors duration-300 ease-in-out hover:text-white"
+          >
+            <i class="fa fa-envelope"></i>
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- Navegação -->
+      <div class="text-center md:text-left">
+
+        <h3 class="text-xs font-semibold uppercase tracking-[.18em] text-white/80">
+          Navegação
+        </h3>
+
+        <nav class="mt-5 flex flex-col gap-3 text-sm text-white/50">
+
+          <a
+            href="#inicio"
+            class="transition-colors duration-300 hover:text-white"
+          >
+            Início
+          </a>
+
+          <a
+            href="#elos"
+            class="transition-colors duration-300 hover:text-white"
+          >
+            A ELOS
+          </a>
+
+          <a
+            href="#especialistas"
+            class="transition-colors duration-300 hover:text-white"
+          >
+            Especialistas
+          </a>
+
+          <a
+            href="#atuacao"
+            class="transition-colors duration-300 hover:text-white"
+          >
+            Atuação
+          </a>
+
+          <a
+            href="#contato"
+            class="transition-colors duration-300 hover:text-white"
+          >
+            Contato
+          </a>
+
+        </nav>
+
+      </div>
+
+
+      <!-- Contato -->
+      <div class="text-center md:text-left">
+
+        <h3 class="text-xs font-semibold uppercase tracking-[.18em] text-white/80">
+          Fale conosco
+        </h3>
+
+        <div class="mt-5 flex flex-col gap-3 text-sm text-white/50">
+
+          <a
+            href="mailto:contato@elosestrategia.com.br"
+            class="transition-colors duration-300 hover:text-white"
+          >
+            contato@elosestrategia.com.br
+          </a>
+
+          <a
+            href="https://wa.me/5579998339116"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="transition-colors duration-300 hover:text-white"
+          >
+            WhatsApp
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Rodapé inferior -->
+    <div class="flex flex-col items-center justify-between gap-4 py-6 text-xs text-white/40 md:flex-row">
+
+      <p class="text-center md:text-left">
+        © 2026 ELOS Estratégia. Todos os direitos reservados.
+      </p>
+
+    </div>
+
+  </div>
+
+</footer>
+
+
+<!-- Crédito de desenvolvimento -->
+<div class="flex justify-center bg-ink px-6 pb-3 text-white lg:px-10">
+
+  <p class="text-xs text-white/30 transition-colors duration-500 hover:text-white/60">
+
+    <a
+      href="https://wa.me/5579998339116"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <!-- Seta diagonal limpa -->
+      <i class="fa fa-external-link text-[7px]"></i>
+      Desenvolvido por Álex Alencar
+    </a>
+
+  </p>
+
+</div>
+
+  <script src="js/main.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+      const counters = document.querySelectorAll(".counter");
+
+      const animateCounter = (counter) => {
+        const target = parseInt(counter.dataset.target, 10);
+        const duration = 1800;
+        const startTime = performance.now();
+
+        const update = (currentTime) => {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+
+          // Suaviza a animação no início e no final
+          const easeOut = 1 - Math.pow(1 - progress, 3);
+
+          const currentValue = Math.floor(easeOut * target);
+
+          counter.textContent = currentValue;
+
+          if (progress < 1) {
+            requestAnimationFrame(update);
+          } else {
+            counter.textContent = target;
+          }
+        };
+
+        requestAnimationFrame(update);
+      };
+
+
+      const observer = new IntersectionObserver((entries, observer) => {
+
+        entries.forEach(entry => {
+
+          if (entry.isIntersecting) {
+
+            const counter = entry.target;
+
+            // Evita executar novamente
+            if (counter.dataset.animated === "true") return;
+
+            counter.dataset.animated = "true";
+
+            animateCounter(counter);
+
+            observer.unobserve(counter);
+          }
+
+        });
+
+      }, {
+        threshold: 0.5
+      });
+
+
+      counters.forEach(counter => observer.observe(counter));
+
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+      const timeline = document.getElementById("progress-timeline");
+
+      if (!timeline) return;
+
+      const dots = timeline.querySelectorAll(".timeline-dot");
+
+      let timelineStarted = false;
+
+      const startTimeline = () => {
+
+        if (timelineStarted) return;
+
+        timelineStarted = true;
+
+        const totalSteps = dots.length;
+        const duration = 5000;
+        const stepDuration = duration / totalSteps;
+
+        dots.forEach((dot, index) => {
+
+          setTimeout(() => {
+            dot.classList.add("completed");
+          }, (stepDuration * (index + 1)) - 600);
+
+        });
+
+      };
+
+
+      const observer = new IntersectionObserver((entries) => {
+
+        entries.forEach(entry => {
+
+          if (entry.isIntersecting) {
+
+            startTimeline();
+
+            observer.disconnect();
+
+          }
+
+        });
+
+      }, {
+        threshold: 0.35
+      });
+
+
+      observer.observe(timeline);
+
+    });
+    </script>
+</body>
+</html>
