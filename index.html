@@ -68,18 +68,56 @@
   }
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "ELOS Estratégia",
-    "url": "https://www.elosestrategia.com.br/",
-    "logo": "https://www.elosestrategia.com.br/assets/elosLogo.webp",
-    "description": "Consultoria empresarial especializada em estratégia, gestão, pessoas, finanças, comercial e execução.",
-    "email": "contato@elosestrategia.com.br",
-    "sameAs": [
-      "https://instagram.com/elos_estrategia"
-    ]
-  }
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "ELOS Estratégia",
+      "url": "https://www.elosestrategia.com.br/",
+      "logo": "https://www.elosestrategia.com.br/assets/elosLogo.webp",
+      "description": "Consultoria empresarial especializada em estratégia, gestão, pessoas, finanças, comercial e execução.",
+      "email": "contato@elosestrategia.com.br",
+      "sameAs": [
+        "https://instagram.com/elos_estrategia"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Serviços de Consultoria Empresarial",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Gestão Estratégica",
+              "description": "Diagnóstico organizacional, planejamento estratégico, reestruturação, modelagem de negócio, governança e análise de franqueabilidade."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Gestão Financeira",
+              "description": "Valuation, precificação, análise de custos, planejamento financeiro e revisão orçamentária com base em indicadores técnicos precisos."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Gestão de Pessoas",
+              "description": "Formação de líderes, mentoria, T&D, avaliação de desempenho e implementação de cultura organizacional de alta performance."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Gestão Comercial e Marketing",
+              "description": "Canais de venda, CRM, pesquisas de mercado, posicionamento de marca, comercial ativo e experiência do cliente (NPS)."
+            }
+          }
+        ]
+      }
+    }
   </script>
   
   <!-- Resource hints: reduz latência das dependências externas -->
@@ -247,6 +285,7 @@
       <div class="mx-auto grid min-h-[calc(100vh-150px)] max-w-[1400px] items-center gap-12 pb-20 lg:grid-cols-[1.12fr_.88fr]">
         <div class="reveal">
           <h1 class="max-w-[980px] text-[clamp(3.25rem,7vw,5rem)] font-medium leading-[.9] tracking-[-.055em]">
+            <span class="sr-only">Consultoria Empresarial: </span>
             O <span class="italic text-elosBlue">ELO</span> que faltava entre o que você planeja e o que sua empresa executa.
           </h1>
           <p class="mt-9 max-w-[660px] text-base leading-7 text-muted lg:text-[18px] lg:leading-8">
@@ -374,7 +413,8 @@
                         Entre a estratégia e o resultado, existe a <span class="text-elosOrange">execução.</span>
           </h2>
           <p class="mt-8 text-base leading-7 text-white lg:text-lg">
-            Muitas organizações sabem onde querem chegar, mas encontram dificuldade para transformar o planejamento estratégico em execução consistente. A ELOS conecta a estratégia às pessoas, aos processos e à prática que fazem o resultado acontecer.
+            A Elos Estratégia é uma consultoria empresarial localizada em Sergipe, especializada em transformar planejamento estratégico em execução prática. Nossos serviços incluem gestão financeira, gestão de pessoas, governança e estruturação comercial para empresas.<br>
+            Muitas organizações sabem onde querem chegar, mas encontram dificuldade para transformar o planejamento estratégico em execução consistente. Conectamos a estratégia às pessoas, aos processos e à prática que fazem o resultado acontecer.
           </p>
         </div>
 
@@ -948,174 +988,173 @@
 
   <footer class="bg-ink px-6 pt-12 text-white lg:px-10">
 
-  <div class="mx-auto max-w-[1400px]">
+    <div class="mx-auto max-w-[1400px]">
 
-    <!-- Conteúdo principal -->
-    <div class="grid gap-10 border-b border-white/10 pb-10 md:grid-cols-3">
+      <!-- Conteúdo principal -->
+      <div class="grid gap-10 border-b border-white/10 pb-10 md:grid-cols-3">
 
-      <!-- Marca -->
-      <div class="flex flex-col items-center text-center md:items-start md:text-left">
+        <!-- Marca -->
+        <div class="flex flex-col items-center text-center md:items-start md:text-left">
 
-        <img
-          src="/assets/elosLogo.webp"
-          class="w-20"
-          alt="ELOS Estratégia"
-          decoding="async"
-        >
+          <img
+            src="/assets/elosLogo.webp"
+            class="w-20"
+            alt="ELOS Estratégia"
+            decoding="async"
+          >
 
-        <p class="mt-5 max-w-xs text-sm leading-relaxed text-white/50">
-          Sua empresa sabe onde quer chegar, nós mostramos como chegar lá. 
+          <p class="mt-5 max-w-xs text-sm leading-relaxed text-white/50">
+            Sua empresa sabe onde quer chegar, nós mostramos como chegar lá. 
+          </p>
+
+          <!-- Redes sociais -->
+          <div class="mt-6 flex gap-5">
+
+            <a
+              href="https://instagram.com/elos_estrategia"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram da ELOS Estratégia"
+              class="text-xl text-white/60 transition-colors duration-300 ease-in-out hover:text-white"
+            >
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+
+            <a
+              href="https://wa.link/ngvb8l"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp da ELOS Estratégia"
+              class="text-xl text-white/60 transition-colors duration-300 ease-in-out hover:text-white"
+            >
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+
+            <a
+              href="mailto:contato@elosestrategia.com.br"
+              aria-label="Enviar e-mail para a ELOS Estratégia"
+              class="text-xl text-white/60 transition-colors duration-300 ease-in-out hover:text-white"
+            >
+              <i class="fa fa-envelope"></i>
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- Navegação -->
+        <div class="text-center md:text-left">
+
+          <h2 class="text-xs font-semibold uppercase tracking-[.18em] text-white/80">
+            Navegação
+          </h2>
+
+          <nav class="mt-5 flex flex-col gap-3 text-sm text-white/50">
+
+            <a
+              href="#inicio"
+              class="transition-colors duration-300 hover:text-white"
+            >
+              Início
+            </a>
+
+            <a
+              href="#elos"
+              class="transition-colors duration-300 hover:text-white"
+            >
+              A Elos
+            </a>
+
+            <a
+              href="#especialistas"
+              class="transition-colors duration-300 hover:text-white"
+            >
+              Especialistas
+            </a>
+
+            <a
+              href="#atuacao"
+              class="transition-colors duration-300 hover:text-white"
+            >
+              Atuação
+            </a>
+
+            <a
+              href="#contato"
+              class="transition-colors duration-300 hover:text-white"
+            >
+              Contato
+            </a>
+
+          </nav>
+
+        </div>
+
+
+        <!-- Contato -->
+        <div class="text-center md:text-left">
+
+          <h2 class="text-xs font-semibold uppercase tracking-[.18em] text-white/80">
+            Fale conosco
+          </h2>
+
+          <div class="mt-5 flex flex-col gap-3 text-sm text-white/50">
+
+            <a
+              href="mailto:contato@elosestrategia.com.br"
+              class="transition-colors duration-300 hover:text-white"
+            >
+              contato@elosestrategia.com.br
+            </a>
+
+            <a
+              href="https://wa.link/ngvb8l"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="transition-colors duration-300 hover:text-white"
+            >
+              (79) 99923-3924
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Rodapé inferior -->
+      <div class="flex flex-col items-center justify-between gap-4 py-6 text-xs text-white/40 md:flex-row">
+
+        <p class="text-center md:text-left">
+          © 2026 ELOS Estratégia. Todos os direitos reservados.
         </p>
 
-        <!-- Redes sociais -->
-        <div class="mt-6 flex gap-5">
-
-          <a
-            href="https://instagram.com/elos_estrategia"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram da ELOS Estratégia"
-            class="text-xl text-white/60 transition-colors duration-300 ease-in-out hover:text-white"
-          >
-            <i class="fa-brands fa-instagram"></i>
-          </a>
-
-          <a
-            href="https://wa.link/ngvb8l"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="WhatsApp da ELOS Estratégia"
-            class="text-xl text-white/60 transition-colors duration-300 ease-in-out hover:text-white"
-          >
-            <i class="fa-brands fa-whatsapp"></i>
-          </a>
-
-          <a
-            href="mailto:contato@elosestrategia.com.br"
-            aria-label="Enviar e-mail para a ELOS Estratégia"
-            class="text-xl text-white/60 transition-colors duration-300 ease-in-out hover:text-white"
-          >
-            <i class="fa fa-envelope"></i>
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <!-- Navegação -->
-      <div class="text-center md:text-left">
-
-        <h3 class="text-xs font-semibold uppercase tracking-[.18em] text-white/80">
-          Navegação
-        </h3>
-
-        <nav class="mt-5 flex flex-col gap-3 text-sm text-white/50">
-
-          <a
-            href="#inicio"
-            class="transition-colors duration-300 hover:text-white"
-          >
-            Início
-          </a>
-
-          <a
-            href="#elos"
-            class="transition-colors duration-300 hover:text-white"
-          >
-            A ELOS
-          </a>
-
-          <a
-            href="#especialistas"
-            class="transition-colors duration-300 hover:text-white"
-          >
-            Especialistas
-          </a>
-
-          <a
-            href="#atuacao"
-            class="transition-colors duration-300 hover:text-white"
-          >
-            Atuação
-          </a>
-
-          <a
-            href="#contato"
-            class="transition-colors duration-300 hover:text-white"
-          >
-            Contato
-          </a>
-
-        </nav>
-
-      </div>
-
-
-      <!-- Contato -->
-      <div class="text-center md:text-left">
-
-        <h3 class="text-xs font-semibold uppercase tracking-[.18em] text-white/80">
-          Fale conosco
-        </h3>
-
-        <div class="mt-5 flex flex-col gap-3 text-sm text-white/50">
-
-          <a
-            href="mailto:contato@elosestrategia.com.br"
-            class="transition-colors duration-300 hover:text-white"
-          >
-            contato@elosestrategia.com.br
-          </a>
-
-          <a
-            href="https://wa.link/ngvb8l"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="transition-colors duration-300 hover:text-white"
-          >
-            (79) 99923-3924
-          </a>
-
-        </div>
-
       </div>
 
     </div>
 
-
-    <!-- Rodapé inferior -->
-    <div class="flex flex-col items-center justify-between gap-4 py-6 text-xs text-white/40 md:flex-row">
-
-      <p class="text-center md:text-left">
-        © 2026 ELOS Estratégia. Todos os direitos reservados.
-      </p>
-
-    </div>
-
-  </div>
-
-</footer>
+  </footer>
 
 
-<!-- Crédito de desenvolvimento -->
-<div class="flex justify-center bg-ink px-6 pb-3 text-white lg:px-10">
+  
+  <!-- <div class="flex justify-center bg-ink px-6 pb-3 text-white lg:px-10">
 
-  <p class="text-xs text-white/30 transition-colors duration-500 hover:text-white/60">
+    <p class="text-xs text-white/30 transition-colors duration-500 hover:text-white/60">
 
-    <a
-      href="https://wa.me/5579998339116"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <!-- Seta diagonal limpa -->
-      <i class="fa fa-external-link text-[7px]"></i>
-      Desenvolvido por Álex Alencar
-    </a>
+      <a
+        href="https://wa.me/5579998339116"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <i class="fa fa-external-link text-[7px]"></i>
+        Desenvolvido por Álex Alencar
+      </a>
 
-  </p>
+    </p>
 
-</div>
+  </div> -->
 
   <script src="js/main.js" defer></script>
   <script>
