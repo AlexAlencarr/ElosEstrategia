@@ -1,0 +1,16 @@
+{
+  "name": "ELOS Estratégia",
+  "short_name": "ELOS",
+  "description": "ELOS Estratégia — o elo entre estratégia e execução.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F5F3EE",
+  "theme_color": "#2A2D93",
+  "icons": [
+    {
+      "src": "/assets/elosLogo.webp",
+      "sizes": "512x512",
+      "type": "image/webp"
+    }
+  ]
+}
